@@ -30,6 +30,20 @@ namespace VeterinaryClinic.Controllers.Pets
             // Retorna la coleccion
             return Ok(pets); 
         }
+
+        [HttpGet]
+        public async Task<IActionResult> ListPetByIdAsync([FromQuery] int id)
+        {
+            // Enviamos los datos al repositorio
+            var pet = await _petRepository.ListPetById(id);
+            if (pet == null)
+            {
+                // retorna si la respuesta esta vacia
+                return NotFound($"No se encontro la mascota con el Id {id}.");
+            }
+            // Retorna la coleccion
+            return Ok(pet); 
+        }
         
     }
 }

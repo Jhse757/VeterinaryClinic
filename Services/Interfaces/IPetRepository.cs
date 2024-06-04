@@ -11,5 +11,6 @@ namespace VeterinaryClinic.Services.Interfaces
     {
         Task<IEnumerable<IPet>> ListAllPets();
         Task<IPet> CreatePet(PetCreateDto petCreateDto);
+        Task<IPet> ListPetById(int id);
     }
 }

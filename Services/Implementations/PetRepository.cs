@@ -66,5 +66,21 @@ namespace VeterinaryClinic.Services.Implementations
             return pets;
         }
         #endregion
+
+        
+        public async Task<IPet> ListPetById(int id)
+        {
+            // Busca el objeto a listar en la base de datos
+            var pet = await _context.Pets.FindAsync(id);
+
+            // Verifica si el objeto es nulo y devuelve null si no se encuentra
+            if (pet == null)
+            {
+                return null;
+            }
+
+            // Devuelve la mascota encontrada
+            return pet;   
+        }
     }
 }
