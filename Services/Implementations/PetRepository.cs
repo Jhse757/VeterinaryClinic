@@ -1,9 +1,11 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using VeterinaryClinic.Data;
+using VeterinaryClinic.DTOs;
 using VeterinaryClinic.Models.Interfaces;
 using VeterinaryClinic.Services.Interfaces;
 
@@ -16,6 +18,36 @@ namespace VeterinaryClinic.Services.Implementations
         public PetRepository(AplicationDbContext context)
         {
             _context = context;
+        }
+
+        public async Task<IPet> CreatePet(PetCreateDto petCreateDto)
+        {
+            try
+            {
+                // Mapea el DTO a la entidad Paciente
+                var pet = new Pet
+                {
+                    Names = petCreateDto.Names,
+                    Specie = petCreateDto.Specie,
+                    Race = petCreateDto.Race,
+                    DateBirth = petCreateDto.DateBirth,
+                    Owner_Id = petCreateDto.Owner_Id,
+                    Photo = petCreateDto.Photo,
+                };
+
+                // Añadir el nuevo objeto al contexto de la base de datos
+                _context.Pets.Add(pet);
+
+                // Guarda los cambios en la base de datos
+                await _context.SaveChangesAsync();
+
+                // Retorna el objeto creado
+                return pet;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al intentar crear la mascota.", ex);
+            }
         }
 
         #region Metodo ListAllPets: Lista todas las mascotas
