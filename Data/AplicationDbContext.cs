@@ -29,11 +29,13 @@ namespace VeterinaryClinic.Data
         {
             base.OnModelCreating(modelBuilder);
 
+            // Configurar el mapeo del enum Estado
+
             modelBuilder.Entity<Pet>()
             .HasOne(p =>p.Owner)
             .WithMany(o => o.Pets)
             .HasForeignKey(o => o.Owner_Id);
-
+            
             modelBuilder.Entity<Quote>()
             .HasOne(q =>q.Pet)
             .WithMany(p => p.Quotes)

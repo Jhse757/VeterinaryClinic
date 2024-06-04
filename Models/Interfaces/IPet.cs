@@ -12,7 +12,7 @@ namespace VeterinaryClinic.Models.Interfaces
         string Names { get; set; }
         Species Specie { get; set; }        
         string Race { get; set; }
-        DateOnly DateBirth { get; set; }
+        DateTime DateBirth { get; set; }
         int Owner_Id { get; set; }
         string Photo { get; set; }
         Status Status { get; set; }
