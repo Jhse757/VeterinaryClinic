@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using VeterinaryClinic.Data;
+using VeterinaryClinic.Services.Implementations;
+using VeterinaryClinic.Services.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,14 +19,16 @@ builder.Services.AddDbContext<AplicationDbContext>(options =>
 options.UseMySql(connectonString, ServerVersion.AutoDetect(connectonString)));
 
 // Configurar los repositorios
-builder.Services.AddScoped<>();
-
-
-var app = builder.Build();
+builder.Services.AddScoped<IOwnerRepository, OwnerRepository>();
+builder.Services.AddScoped<IPetRepository, PetRepository>();
+builder.Services.AddScoped<IQuoteRepository, QuoteRepository>();
+builder.Services.AddScoped<IVetRepository, VetRepository>();
 
 // Configurar Swagger
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
