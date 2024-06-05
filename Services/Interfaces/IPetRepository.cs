@@ -13,5 +13,6 @@ namespace VeterinaryClinic.Services.Interfaces
         Task<IPet> CreatePet(PetCreateDto petCreateDto);
         Task<IPet> ListPetById(int id);
         Task<bool> UpdatePet(IPet pet);
+        Task<bool> DeletePetById(int id);
     }
 }
