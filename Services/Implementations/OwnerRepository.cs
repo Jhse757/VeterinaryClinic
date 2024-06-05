@@ -50,7 +50,7 @@ namespace VeterinaryClinic.Services.Implementations
         }
         #endregion
 
-        #region Metodo ListAllOwner: Lista todos los propiestarios
+        #region Metodo ListAllOwner: Lista todos los propietarios
         public async Task<IEnumerable<IOwner>> ListAllOwner()
         {
             // Buscamos los objetos en la base de datos
@@ -64,6 +64,23 @@ namespace VeterinaryClinic.Services.Implementations
             }
             // Retorna la coleccion con los objetos encontrados
             return owners;
+        }
+        #endregion
+    
+        #region Metodo ListOwnerById: Lista propietario por Id
+        public async Task<IOwner> ListOwnerById(int id)
+        {
+            // Busca el objeto a listar en la base de datos
+            var owner = await _context.Owners.FindAsync(id);
+
+            // Verifica si el objeto es nulo y devuelve null si no se encuentra
+            if (owner == null)
+            {
+                return null;
+            }
+
+            // Devuelve el objeto encontrado
+            return owner;   
         }
         #endregion
     }
