@@ -31,5 +31,19 @@ namespace VeterinaryClinic.Controllers.Vets
             // Retorna la coleccion
             return Ok(vets); 
         }
+
+        [HttpGet]
+        public async Task<IActionResult> ListVetByIdAsync([FromQuery] int id)
+        {
+            // Enviamos los datos al repositorio
+            var vet = await _vetRepository.ListVetById(id);
+            if (vet == null)
+            {
+                // retorna si la respuesta esta vacia
+                return NotFound($"No se encontro el veterinario con el Id {id}.");
+            }
+            // Retorna la coleccion
+            return Ok(vet); 
+        }
     }
 }

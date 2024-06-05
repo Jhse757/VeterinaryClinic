@@ -9,5 +9,6 @@ namespace VeterinaryClinic.Services.Interfaces
     public interface IVetRepository
     {
         Task<IEnumerable<IVet>> ListAllVets();
+        Task<IVet> ListVetById(int id);
     }
 }
