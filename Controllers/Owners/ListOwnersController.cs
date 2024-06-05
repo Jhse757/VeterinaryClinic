@@ -31,5 +31,19 @@ namespace VeterinaryClinic.Controllers.owner
             // Retorna la coleccion
             return Ok(owner); 
         }
+
+        [HttpGet]
+        public async Task<IActionResult> ListAllOwnerByIdAsync([FromQuery] int id)
+        {
+            // Enviamos los datos al repositorio
+            var owner = await _ownerRepository1.ListOwnerById(id);
+            if (owner == null)
+            {
+                // retorna si la respuesta esta vacia
+                return NotFound($"No se encontro el propietario con el Id {id}.");
+            }
+            // Retorna la coleccion
+            return Ok(owner); 
+        }
     }
 }
