@@ -17,7 +17,7 @@ namespace VeterinaryClinic.Services.Implementations
             _context = context;
         }
 
-        #region Metodo ListAllOwner: Lista todos los veterinarios
+        #region Metodo ListAllVet: Lista todos los veterinarios
         public async Task<IEnumerable<IVet>> ListAllVets()
         {
             // Buscamos los objetos en la base de datos
@@ -32,6 +32,23 @@ namespace VeterinaryClinic.Services.Implementations
             // Retorna la coleccion con los objetos encontrados
             return vets;
         }
-        #endregion    
+        #endregion
+
+        #region Metodo ListVetById: Lista veterinario por Id
+        public async Task<IVet> ListVetById(int id)
+        {
+            // Busca el objeto a listar en la base de datos
+            var vet = await _context.Vets.FindAsync(id);
+
+            // Verifica si el objeto es nulo y devuelve null si no se encuentra
+            if (vet == null)
+            {
+                return null;
+            }
+
+            // Devuelve el objeto encontrado
+            return vet;   
+        }
+        #endregion
     }
 }
