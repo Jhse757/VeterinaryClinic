@@ -14,6 +14,7 @@ namespace VeterinaryClinic.Controllers.Pets
     [Route("api/pets")]
     public class CreatePetController : ControllerBase
     {
+        // Inyeccion de dependencias
         private readonly IPetRepository _petRepository;
         public CreatePetController(IPetRepository petRepository)
         {
