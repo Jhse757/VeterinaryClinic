@@ -10,5 +10,7 @@ namespace VeterinaryClinic.Services.Interfaces
     public interface IOwnerRepository
     {
         Task<IEnumerable<IOwner>> ListAllOwner();
+        Task<IOwner> CreateOwner(OwnerCreateDto ownerCreateDto);
+
     }
 }
