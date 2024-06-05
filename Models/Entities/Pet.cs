@@ -25,7 +25,7 @@ namespace VeterinaryClinic.Models.Interfaces
         public string Photo { get; set; }
 
         [Column(TypeName = "enum('Active','Inactive')")]
-        public Status Status { get; set; }
+        public Status Status { get; set; } = Status.Active;
 
         // Propiedades de navegación
         public Owner Owner { get; set; }

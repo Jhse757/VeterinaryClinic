@@ -19,7 +19,38 @@ namespace VeterinaryClinic.Services.Implementations
             _context = context;
         }
 
-        #region Metodo ListAllPets: Lista todas las mascotas
+        #region Metodo Createowner: Crea un nuevo propietario
+        public async Task<IOwner> CreateOwner(OwnerCreateDto ownerCreateDto)
+        {
+            try
+            {
+                // Mapea el DTO a la entidad
+                var owner = new Owner
+                {
+                    Names = ownerCreateDto.Names,
+                    LastName = ownerCreateDto.LastName,
+                    Email = ownerCreateDto.Email,
+                    Address = ownerCreateDto.Address,
+                    Phone = ownerCreateDto.Phone,
+                };
+
+                // Añadir el nuevo objeto al contexto de la base de datos
+                _context.Owners.Add(owner);
+
+                // Guarda los cambios en la base de datos
+                await _context.SaveChangesAsync();
+
+                // Retorna el objeto creado
+                return owner;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al intentar crear el propietario.", ex);
+            }
+        }
+        #endregion
+
+        #region Metodo ListAllOwner: Lista todos los propiestarios
         public async Task<IEnumerable<IOwner>> ListAllOwner()
         {
             // Buscamos los objetos en la base de datos
@@ -34,7 +65,6 @@ namespace VeterinaryClinic.Services.Implementations
             // Retorna la coleccion con los objetos encontrados
             return owners;
         }
-        #endregion        
-        
+        #endregion
     }
 }

@@ -26,7 +26,7 @@ namespace VeterinaryClinic.Services.Implementations
         {
             try
             {
-                // Mapea el DTO a la entidad Paciente
+                // Mapea el DTO a la entidad
                 var pet = new Pet
                 {
                     Names = petCreateDto.Names,
@@ -110,7 +110,7 @@ namespace VeterinaryClinic.Services.Implementations
         }
         #endregion
     
-        #region Metodo DeletePacienteById para eliminar un paciente
+        #region Metodo DeletePetById para eliminar un
         public async Task<bool> DeletePetById(int id)
         {
             // Busca el objeto a eliminar en la base de datos

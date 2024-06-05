@@ -20,7 +20,7 @@ namespace VeterinaryClinic.Controllers.Pets
 
         [HttpPatch]
         [Route ("delete")]
-        public async Task<IActionResult> DeletePacienteAsync([FromQuery] int id)
+        public async Task<IActionResult> DeletePetByIdAsync([FromQuery] int id)
         {
             var result = await _petRepository.DeletePetById(id);
 
