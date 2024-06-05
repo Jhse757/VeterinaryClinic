@@ -109,5 +109,29 @@ namespace VeterinaryClinic.Services.Implementations
             return true;
         }
         #endregion
+    
+        #region Metodo DeletePacienteById para eliminar un paciente
+        public async Task<bool> DeletePetById(int id)
+        {
+            // Busca el objeto a eliminar en la base de datos
+            var pet = await _context.Pets.FindAsync(id);
+
+            // Verifica si el objeto es nulo
+            if (pet == null)
+            {
+                return false;
+            }
+
+            // Cambiar el estado del objeto a "Inactive"
+            pet.Status = Status.Inactive;
+
+            // Guarda los cambios en la base de datos
+            await _context.SaveChangesAsync();
+
+            // Devuelve true si el objeto fue eliminado
+            return true;
+        }
+        #endregion
+    
     }
 }
