@@ -33,7 +33,7 @@ namespace VeterinaryClinic.Controllers.owner
         }
 
         [HttpGet]
-        public async Task<IActionResult> ListAllOwnerByIdAsync([FromQuery] int id)
+        public async Task<IActionResult> ListOwnerByIdAsync([FromQuery] int id)
         {
             // Enviamos los datos al repositorio
             var owner = await _ownerRepository1.ListOwnerById(id);

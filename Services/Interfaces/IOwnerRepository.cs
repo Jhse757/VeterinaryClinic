@@ -12,6 +12,8 @@ namespace VeterinaryClinic.Services.Interfaces
         Task<IEnumerable<IOwner>> ListAllOwner();
         Task<IOwner> CreateOwner(OwnerCreateDto ownerCreateDto);
         Task<IOwner> ListOwnerById(int id);
+        Task<bool> UpdateOwner(IOwner owner);
+
 
     }
 }

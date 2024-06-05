@@ -83,5 +83,26 @@ namespace VeterinaryClinic.Services.Implementations
             return owner;   
         }
         #endregion
+
+        #region Metodo UpdateOwner: Actualiza propietarios
+        public async Task<bool> UpdateOwner(IOwner owner)
+        {
+            // Busca el objeto a actualizar en la base de datos
+            var existingOwner = await _context.Owners.FindAsync(owner.Id);
+            
+            // Verifica si el obejto es nulo
+            if (existingOwner == null)
+            {
+                return false;
+            }
+
+            // Guarda los cambios en la base de datos
+            await _context.SaveChangesAsync();
+
+            // Devuelve true si el objeto fue actualizado
+            return true;
+        }
+        #endregion
     }
+
 }

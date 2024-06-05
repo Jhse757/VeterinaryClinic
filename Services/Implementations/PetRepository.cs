@@ -99,9 +99,6 @@ namespace VeterinaryClinic.Services.Implementations
                 return false;
             }
 
-            // Cambiar el estado del objeto a "Inactive"
-            existingpet.Status = Status.Inactive;
-
             // Guarda los cambios en la base de datos
             await _context.SaveChangesAsync();
 
