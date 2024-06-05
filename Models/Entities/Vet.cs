@@ -18,7 +18,7 @@ namespace VeterinaryClinic.Models.Interfaces
         public string Names { get; set; }
 
         [Required]
-        public string LastName { get; set; }
+        public string LastNames { get; set; }
 
         [Required]
         public string Email { get; set; }
