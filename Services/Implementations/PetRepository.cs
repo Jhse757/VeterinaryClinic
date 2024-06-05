@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using VeterinaryClinic.Data;
 using VeterinaryClinic.DTOs;
+using VeterinaryClinic.Models.Enums;
 using VeterinaryClinic.Models.Interfaces;
 using VeterinaryClinic.Services.Interfaces;
 
@@ -20,6 +21,7 @@ namespace VeterinaryClinic.Services.Implementations
             _context = context;
         }
 
+        #region Metodo CreatePet: Crea una nueva mascotas
         public async Task<IPet> CreatePet(PetCreateDto petCreateDto)
         {
             try
@@ -49,6 +51,7 @@ namespace VeterinaryClinic.Services.Implementations
                 throw new Exception("Error al intentar crear la mascota.", ex);
             }
         }
+        #endregion
 
         #region Metodo ListAllPets: Lista todas las mascotas
         public async Task<IEnumerable<IPet>> ListAllPets()
@@ -67,7 +70,7 @@ namespace VeterinaryClinic.Services.Implementations
         }
         #endregion
 
-        
+        #region Metodo ListPetById: Lista mascotas por Id
         public async Task<IPet> ListPetById(int id)
         {
             // Busca el objeto a listar en la base de datos
@@ -82,5 +85,29 @@ namespace VeterinaryClinic.Services.Implementations
             // Devuelve la mascota encontrada
             return pet;   
         }
+        #endregion
+
+        #region Metodo UpdatePet: Actualiza mascotas
+        public async Task<bool> UpdatePet(IPet pet)
+        {
+            // Busca el objeto a actualizar en la base de datos
+            var existingpet = await _context.Pets.FindAsync(pet.Id);
+            
+            // Verifica si el obejto es nulo
+            if (existingpet == null)
+            {
+                return false;
+            }
+
+            // Cambiar el estado del objeto a "Inactive"
+            existingpet.Status = Status.Inactive;
+
+            // Guarda los cambios en la base de datos
+            await _context.SaveChangesAsync();
+
+            // Devuelve true si el objeto fue actualizado
+            return true;
+        }
+        #endregion
     }
 }
