@@ -11,6 +11,7 @@ namespace VeterinaryClinic.Services.Implementations
 {
     public class VetRepository : IVetRepository
     {
+        // Contexto de la base de datos
         private readonly AplicationDbContext _context;
         public VetRepository(AplicationDbContext context)
         {
