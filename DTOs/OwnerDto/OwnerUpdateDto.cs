@@ -7,11 +7,8 @@ using System.Threading.Tasks;
 
 namespace VeterinaryClinic.DTOs
 {
-    public class OwnerDetailsDto
+    public class OwnerUpdateDto
     {
-        [Key]
-        public int Id { get; set; }
-
         [Required]
         public string Names { get; set; }
 
