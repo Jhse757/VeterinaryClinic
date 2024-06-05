@@ -10,7 +10,7 @@ namespace VeterinaryClinic.Models.Interfaces
     {
         int Id { get; set; }
         string Names { get; set; }
-        string LastName { get; set; }        
+        string LastNames { get; set; }        
         string Email { get; set; }
         string Address { get; set; }
         string Phone { get; set; }
